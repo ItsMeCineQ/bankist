@@ -100,3 +100,13 @@ console.log(link.href);
 console.log(link.getAttribute('href'));
 
 // Data attributes
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add('c');
+logo.classList.remove('c');
+logo.classList.toggle('c');
+logo.classList.contains('c');
+
+// Don't USE!!!!!!! - it will remove all classes and add only one
+// logo.className = 'Marcin';
