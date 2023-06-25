@@ -32,3 +32,71 @@ document.addEventListener('keydown', function (e) {
         closeModal();
     }
 });
+
+// Selecting elements
+console.log(document.documentElement);
+console.log(document.head);
+console.log(document.body);
+
+const header = document.querySelector('.header');
+const allSections = document.querySelectorAll('.section');
+console.log(allSections);
+
+document.getElementById('section--1');
+const allButtons = document.getElementsByTagName('button');
+console.log(allButtons);
+
+document.getElementsByClassName('btn');
+
+// Creating and inserting elements
+// .insertAdjacentHTML
+
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.textContent = 'We use cookies for improved functionality and analitycs.';
+message.innerHTML = 'We use cookies for improved functionality and analitycs. <button class="btn btn--close-cookie">Got it!</button>';
+
+// header.prepend(message);
+header.append(message);
+// header.append(message.cloneNode(true));
+
+// header.before(message);
+// header.after(message);
+
+// Delete elements
+document.querySelector('.btn--close-cookie').addEventListener('click', function(){
+    message.remove();
+});
+
+// Styles
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+console.log(message.style.height);
+console.log(message.style.backgroundColor);
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+// Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+
+console.log(logo.className);
+
+logo.alt = 'tak';
+
+// Non-standard
+console.log(logo.getAttribute('designer'));
+logo.setAttribute('company', 'Bankist');
+
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.twitter-link');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+// Data attributes
