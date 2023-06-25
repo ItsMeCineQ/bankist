@@ -33,7 +33,41 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-// Selecting elements
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function(e){
+    const s1cords = section1.getBoundingClientRect();
+    console.log(s1cords);
+    console.log(e.target.getBoundingClientRect());
+
+    console.log('Current scroll (X/Y)', window.pageXOffset, pageYOffset);
+    console.log('height/width viewport', document.documentElement.clientHeight, document.documentElement.clientWidth);
+
+    // Scrolling
+    window.scrollTo(s1cords.left, s1cords.top + window.pageYOffset);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* // Selecting elements
 console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
@@ -83,7 +117,6 @@ document.documentElement.style.setProperty('--color-primary', 'orangered');
 // Attributes
 const logo = document.querySelector('.nav__logo');
 console.log(logo.alt);
-
 console.log(logo.className);
 
 logo.alt = 'tak';
@@ -109,4 +142,4 @@ logo.classList.toggle('c');
 logo.classList.contains('c');
 
 // Don't USE!!!!!!! - it will remove all classes and add only one
-// logo.className = 'Marcin';
+// logo.className = 'Marcin'; */
