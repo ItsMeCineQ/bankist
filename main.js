@@ -45,7 +45,19 @@ btnScrollTo.addEventListener('click', function(e){
     console.log('height/width viewport', document.documentElement.clientHeight, document.documentElement.clientWidth);
 
     // Scrolling
-    window.scrollTo(s1cords.left, s1cords.top + window.pageYOffset);
+    // window.scrollTo(s1cords.left, s1cords.top + window.pageYOffset);
+
+    // Old method
+    /* window.scrollTo({
+       left: s1cords.left, 
+       top: s1cords.top + window.pageYOffset,
+       behavior: 'smooth',
+    }); */
+
+    // New method(works only on new search engines)
+    section1.scrollIntoView({
+        behavior: 'smooth',
+    })
 });
 
 
