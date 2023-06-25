@@ -57,7 +57,7 @@ btnScrollTo.addEventListener('click', function(e){
     // New method(works only on new search engines)
     section1.scrollIntoView({
         behavior: 'smooth',
-    })
+    });
 });
 
 
@@ -155,3 +155,23 @@ logo.classList.contains('c');
 
 // Don't USE!!!!!!! - it will remove all classes and add only one
 // logo.className = 'Marcin'; */
+
+// **************************************************************
+// ************* TYPES OF EVENTS AND EVENT HANDLERS *************
+// **************************************************************
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = function(e){
+    alert('addEventListener: Great! You are reading the heading');
+
+    
+};
+
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+
+/* h1.onmouseenter = function(e){
+    alert('onmouseenter: Great! You are reading the heading');
+}; */
