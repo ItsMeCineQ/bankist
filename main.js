@@ -83,6 +83,28 @@ document.querySelector('.nav__links').addEventListener('click', function(e){
     };
 });
 
+// Tabbed component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function(e){
+    const clicked = e.target.closest('.operations__tab');
+
+    // Guard clause
+    if(!clicked) return;
+
+    // Active tab
+    tabs.forEach(t => t.classList.remove('operations__tab--active'));
+    clicked.classList.add('operations__tab--active');
+
+    // Activate content area
+    tabsContent.forEach(t => t.classList.remove('operations__content--active'));
+    document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
+});
+
+
+
 
 
 
@@ -225,7 +247,7 @@ document.querySelector('.nav').addEventListener('click', function(e){
 // *********************** DOM TRAVERSING ***********************
 // **************************************************************
 
-const h1 = document.querySelector('h1');
+/* const h1 = document.querySelector('h1');
 
 // Going downwards: child
 console.log(h1.querySelectorAll('.highlight'));
@@ -252,4 +274,4 @@ console.log(h1.nextSibling);
 console.log(h1.parentElement.children);
 [...h1.parentElement.children].forEach(function(e){
     if(e !== h1) e.style.transform = 'scale(0.5)';
-});
+}); */
