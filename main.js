@@ -125,6 +125,8 @@ nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
 // Sticky navigation
+// This one is bad to use, it uses too much pamięci
+
 /* const initialCoords = section1.getBoundingClientRect();
 console.log(initialCoords);
 
@@ -156,7 +158,6 @@ const navHeight = nav.getBoundingClientRect().height;
 
 const stickyNav = function(entries){
     const [entry] = entries;
-    console.log(entry);
     if(!entry.isIntersecting) nav.classList.add('sticky');
     else nav.classList.remove('sticky');
 }
@@ -168,6 +169,29 @@ const observer = new IntersectionObserver(stickyNav, {
 });
 observer.observe(header);
 
+// Reveal sections
+const allSections = document.querySelectorAll('.section');
+
+const revealSection = function(entries, observer){
+    const [entry] = entries;
+    console.log(entries);
+
+    if(!entry.isIntersecting) return;
+    else entry.target.classList.remove('section--hidden');
+    observer.unobserve(entry.target);
+};
+
+
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+    root: null,
+    threshold: 0.15,
+});
+
+allSections.forEach(function(section){
+    sectionObserver.observe(section);
+    section.classList.add('section--hidden');
+});
 
 
 
