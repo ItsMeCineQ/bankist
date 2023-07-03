@@ -234,20 +234,14 @@ const createDots = function(){
     });
 };
 
-createDots();
-
 const activateDot = function(slide){
     document.querySelectorAll('.dots__dot').forEach(dot => dot.classList.remove('dots__dot--active'));
     document.querySelector(`.dots__dot[data-slide="${slide}"]`).classList.add('dots__dot--active');
 };
 
-activateDot(0);
-
 const goToSlide = function(slide){
     slides.forEach((s, i) => s.style.transform = `translateX(${100 * (i - slide)}%)`);
 };
-
-goToSlide(0);
 
 // Next slide
 const nextSlide = function(){
@@ -473,3 +467,21 @@ console.log(h1.parentElement.children);
 [...h1.parentElement.children].forEach(function(e){
     if(e !== h1) e.style.transform = 'scale(0.5)';
 }); */
+
+// **************************************************************
+// ******************** LIFECYCLE DOM EVENTS ********************
+// **************************************************************
+
+document.addEventListener('DOMContentLoaded', function(e){
+    console.log('HTML parsed and DOM tree built!', e);
+});
+
+window.addEventListener('load', function(e){
+    console.log('Page fully loaded', e);
+});
+
+window.addEventListener('beforeunload', function(e){
+    e.preventDefault();
+    console.log(e);
+    e.returnValue = '';
+});
