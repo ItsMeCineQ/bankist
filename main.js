@@ -43,14 +43,14 @@ const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click', function(e){
-    const s1coords = section1.getBoundingClientRect();
-    console.log(s1coords);
+    //const s1coords = section1.getBoundingClientRect();
+ /*    console.log(s1coords);
 
     console.log(e.target.getBoundingClientRect());
 
     console.log('Current scroll (X/Y)', window.pageXOffset, pageYOffset);
     console.log('height/width viewport', document.documentElement.clientHeight, document.documentElement.clientWidth);
-
+ */
     // Scrolling
     // window.scrollTo(s1coords.left, s1coords.top + window.pageYOffset, {behaviour: 'smooth'});
 
@@ -65,10 +65,27 @@ btnScrollTo.addEventListener('click', function(e){
     section1.scrollIntoView({behavior: 'smooth'});
 });
 
+/////////////////////////////////////////////////////
 
+// Page navigation
 
+/* document.querySelectorAll('.nav__link').forEach(function(e){
+    e.addEventListener('click', function(e){
+        e.preventDefault();
+        const id = this.getAttribute('href');
+        document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+    });
+}); */
 
+document.querySelector('.nav__links').addEventListener('click', function(e){
+    e.preventDefault();
 
+    // Matching strategy
+    if(e.target.classList.contains('nav__link')){
+        const id = e.target.getAttribute('href');
+        document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+    };
+});
 
 
 
@@ -207,22 +224,24 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000); */
 
 // rgb(255,255,255);
 
-const rnd = function(){
-    return Math.trunc(Math.random() * 255 + 1);
+const rnd = function(min, max){
+    return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 const opacity = function(){
     return Math.random();
 };
 
-document.querySelector('.nav').addEventListener('click', function(){
-    const randomColor = `rgba(${rnd()}, ${rnd()}, ${rnd()}, ${opacity()})`;
+document.querySelector('.nav').addEventListener('click', function(e){
+    const randomColor = `rgba(${rnd(0, 255)}, ${rnd(0, 255)}, ${rnd(0, 255)}, ${opacity()})`;
     this.style.background = randomColor;
-    const randomGradient = `linear-gradient(to left, rgb(${rnd()}, ${rnd()}, ${rnd()}), rgb(${rnd()}, ${rnd()}, ${rnd()}))`;
+    const randomGradient = `linear-gradient(to left, rgb(${rnd(0, 255)}, ${rnd(0, 255)}, ${rnd(0, 255)}), rgb(${rnd(0, 255)}, ${rnd(0, 255)}, ${rnd(0, 255)}))`;
     this.style.backgroundImage = randomGradient;
-});
+}, true);
 
-document.querySelector('.nav__links').addEventListener('click', function(){
-    const randomColor = `rgba(${rnd()}, ${rnd()}, ${rnd()}, ${opacity()})`;
+document.querySelector('.nav__links').addEventListener('click', function(e){
+    const randomColor = `rgba(${rnd(0, 255)}, ${rnd(0, 255)}, ${rnd(0, 255)}, ${opacity()})`;
     this.style.background = randomColor;
-});
+    // Stop propagation
+    // e.stopPropagation();
+}); 
