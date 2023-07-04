@@ -224,7 +224,7 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000); */
 
 // rgb(255,255,255);
 
-const rnd = function(min, max){
+/* const rnd = function(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
@@ -244,4 +244,32 @@ document.querySelector('.nav__links').addEventListener('click', function(e){
     this.style.background = randomColor;
     // Stop propagation
     // e.stopPropagation();
-}); 
+});  */
+
+const h1 = document.querySelector('h1');
+
+// Going downwards: child
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+console.log(h1.children);
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'blue';
+
+// Going upwards: parent
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-primary)';
+h1.closest('h1').style.background = 'var(--gradient-secondary)';
+
+// Going sideways: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
+[...h1.parentElement.children].forEach(function(e){
+    if(e !== h1) e.style.transform = 'scale(0.5)';
+});
