@@ -142,7 +142,8 @@ window.addEventListener('scroll', function(e){
 /* const obsCallback = function(entries, observer){
     entries.forEach(entry => {
         console.log(entry);
-    })
+        entry.classList.remove('section--hidden');
+    });
 };
 
 const obsOptions = {
@@ -155,12 +156,9 @@ observer.observe(section1); */
 
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
-console.log(navHeight);
-
 
 const stickyNav = function(entries){
     const [entry] = entries;
-    console.log(entry);
     if(!entry.isIntersecting) nav.classList.add('sticky');
     else nav.classList.remove('sticky');
 };
@@ -172,7 +170,25 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 headerObserver.observe(header);
 
+// Reveal sections
+const sections = document.querySelectorAll('.section');
 
+const revealSection = function(entries, observer){
+    const [entry] = entries;
+    if(!entry.isIntersecting) return;
+
+    entry.target.classList.remove('section--hidden');
+    observer.unobserve(entry.target);
+};
+
+const sectionsObserver = new IntersectionObserver(revealSection, {
+    root: null,
+    threshold: 0.2,
+});
+sections.forEach(function(section){
+    section.classList.add('section--hidden');
+    sectionsObserver.observe(section);
+});
 
 
 
