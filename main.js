@@ -208,13 +208,46 @@ const revealImage = function(entries, observer){
 
 const imageObserver = new IntersectionObserver(revealImage, {
     root: null,
-    threshold: 0.2,
+    threshold: 0,
+    rootMargin: '200px',
 });
 img.forEach(e => imageObserver.observe(e));
 
+// Slider
+const btnRight = document.querySelector('.slider__btn--right');
+const btnLeft = document.querySelector('.slider__btn--left');
+const slides = document.querySelectorAll('.slide');
 
+let curSlide = 0;
 
+const goToSlide = function(slide){
+    slides.forEach((s, i) =>{
+        s.style.transform = `translateX(${100*(i-slide)}%)`;
+    });
+};
 
+goToSlide(0);
+
+// next slide
+const nextSlide = function(){
+    if(curSlide === slides.length - 1) curSlide = 0;
+    else curSlide++;
+
+   goToSlide(curSlide);
+};
+
+btnRight.addEventListener('click', nextSlide);
+
+// Previous slide
+const prevSlide = function(){
+    curSlide === 0 ? curSlide = slides.length - 1 : curSlide--;
+    /* if(curSlide === 0) curSlide = slides.length - 1;
+    else curSlide--; */
+
+    goToSlide(curSlide);
+}
+
+btnLeft.addEventListener('click', prevSlide);
 
 
 
