@@ -234,6 +234,7 @@ const activateDot = function(slide){
 
     document.querySelector(`.dots__dot[data-slide="${slide}"]`).classList.add('dots__dot--active');
 };
+activateDot(0);
 
 const goToSlide = function(slide){
     slides.forEach((s, i) =>{
@@ -463,4 +464,9 @@ console.log(h1.nextSibling);
 console.log(h1.parentElement.children);
 [...h1.parentElement.children].forEach(function(e){
     if(e !== h1) e.style.transform = 'scale(0.5)';
+}); */
+
+/* window.addEventListener('beforeunload', function(e){
+    e.preventDefault();
+    e.returnValue = '';
 }); */
